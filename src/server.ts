@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
-import { config } from './app/Config';
+
 import app from './app';
 import { Server } from 'http';
+import { config } from './app/Config';
+
 let server: Server;
 async function main() {
   await mongoose.connect(config.database_url as string);
