@@ -39,8 +39,24 @@ const getServiceById = CatchAsync(async (req, res) => {
   });
 });
 
+const updateService = CatchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await ServiceService.updateServiceById(
+    req.body,
+    id,
+    req.files as TImageFiles,
+  );
+  SendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Service updated successfully',
+    data: result,
+  });
+});
+
 export const ServiceController = {
   createService,
   getServices,
   getServiceById,
+  updateService,
 };

@@ -4,6 +4,7 @@ import { ExperienceRoutes } from '../Modules/Experience/experience.route';
 import { ProjectRoutes } from '../Modules/Projects/project.route';
 import { BlogRoutes } from '../Modules/Blogs/blog.route';
 import { ContactRoutes } from '../Modules/Contact/contact.route';
+import { ServiceRoutes } from '../Modules/Services/service.route';
 
 const middlewareRoutes = Router();
 
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/sendemail',
     route: ContactRoutes,
+  },
+  {
+    path: '/service',
+    route: ServiceRoutes,
   },
 ];
 
