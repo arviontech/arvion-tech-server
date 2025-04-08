@@ -5,7 +5,10 @@ import bodyDataParser from '../../Middleware/bodyParser';
 import { validateRequest } from '../../Middleware/validateRequest';
 import { ImageFilesArrayZodSchema } from '../../utils/imageValidationSchema';
 import { ServiceController } from './service.controller';
-import { serviceValidationSchema } from './service.validation';
+import {
+  serviceValidationSchema,
+  updateServiceValidationSchema,
+} from './service.validation';
 
 const router = Router();
 
@@ -18,20 +21,20 @@ router.post(
   ServiceController.createService,
 );
 
-// Get all projects
+// Get all Services
 router.get('/', ServiceController.getServices);
 
-// Get a single project by ID
+// Get a single Service by ID
 router.get('/:id', ServiceController.getServiceById);
 
-// Update a project by ID
-// router.patch(
-//   '/:id',
-//   uploadMultipleImages([{ name: 'ServicesImage', maxCount: 5 }]),
-//   validateImageFileRequest(ImageFilesArrayZodSchema),
-//   bodyDataParser,
-//   validateRequest(ProjectsValidation.updateProjectSchema),
-//   ServiceController.updateProject,
-// );
+// Update a Service by ID
+router.patch(
+  '/:id',
+  uploadMultipleImages([{ name: 'ServicesImage', maxCount: 5 }]),
+  validateImageFileRequest(ImageFilesArrayZodSchema),
+  bodyDataParser,
+  validateRequest(updateServiceValidationSchema),
+  ServiceController.updateService,
+);
 
-export const ProjectRoutes = router;
+export const ServiceRoutes = router;
