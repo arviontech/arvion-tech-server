@@ -4,7 +4,7 @@ import { Types } from 'mongoose';
 export interface TProject {
   title: string;
   description: string;
-  github: {
+  github?: {
     frontend: string;
     backend: string;
   };

@@ -4,8 +4,8 @@ import { TProject } from './project.interface';
 import { Project } from './project.model';
 import httpStatus from 'http-status';
 const createProject = async (payload: TProject, images: TImageFiles) => {
-  const { Images } = images;
-  payload.images = Images.map((image) => image.path);
+  const { ProjectImages } = images;
+  payload.images = ProjectImages.map((image) => image.path);
   const newProject = await Project.create(payload);
   return newProject;
 };

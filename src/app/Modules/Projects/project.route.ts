@@ -2,16 +2,17 @@ import { Router } from 'express';
 import { ProjectController } from './project.controller';
 import { validateRequest } from '../../Middleware/validateRequest';
 import { ProjectsValidation } from './project.validation';
-import { uploadMultipleImage } from '../../Config/multer.config';
+
 import validateImageFileRequest from '../../Middleware/validateImageFileRequest';
 import { ImageFilesArrayZodSchema } from '../../utils/imageValidationSchema';
 import bodyDataParser from '../../Middleware/bodyParser';
+import { uploadMultipleImages } from '../../Config/multer.config';
 
 const router = Router();
 
 router.post(
   '/createProject',
-  uploadMultipleImage,
+  uploadMultipleImages([{ name: 'ProjectImages', maxCount: 5 }]),
   validateImageFileRequest(ImageFilesArrayZodSchema),
   bodyDataParser,
   validateRequest(ProjectsValidation.createProjectSchema),
@@ -27,7 +28,7 @@ router.get('/:id', ProjectController.getProjectById);
 // Update a project by ID
 router.patch(
   '/:id',
-  uploadMultipleImage,
+  uploadMultipleImages([{ name: 'ProjectImages', maxCount: 5 }]),
   validateImageFileRequest(ImageFilesArrayZodSchema),
   bodyDataParser,
   validateRequest(ProjectsValidation.updateProjectSchema),

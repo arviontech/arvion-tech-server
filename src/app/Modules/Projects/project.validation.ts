@@ -11,7 +11,7 @@ const createProjectSchema = z.object({
   body: z.object({
     title: z.string().nonempty('Title is required'),
     description: z.string().nonempty('Description is required'),
-    github: githubSchema,
+    github: githubSchema.optional(),
     live: z.string().url('Live URL must be a valid URL'),
     technologies: z.array(z.string().nonempty('Technology name is required')),
   }),

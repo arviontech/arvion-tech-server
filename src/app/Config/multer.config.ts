@@ -49,8 +49,13 @@ export const uploadAuthorAndBlogImage = upload.fields([
   { name: 'authorImage', maxCount: 1 },
   { name: 'blogImage', maxCount: 1 },
 ]);
-export const uploadMultipleImage = upload.fields([
-  { name: 'Images', maxCount: 10 },
-]);
 
-// export const multerUpload = multer({ storage: storage });
+// export const uploadMultipleImage = upload.fields([
+//   { name: 'Images', maxCount: 10 },
+// ]);
+
+export const uploadMultipleImages = (
+  fields: { name: string; maxCount: number }[],
+) => {
+  return upload.fields(fields);
+};
