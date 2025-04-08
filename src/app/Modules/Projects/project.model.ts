@@ -14,11 +14,9 @@ const projectSchema = new Schema<TProject>(
     github: {
       frontend: {
         type: String,
-        required: true,
       },
       backend: {
         type: String,
-        required: true,
       },
     },
     live: {
