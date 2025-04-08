@@ -1,0 +1,37 @@
+import { Router } from 'express';
+import { ProjectController } from './project.controller';
+import { validateRequest } from '../../Middleware/validateRequest';
+import { ProjectsValidation } from './project.validation';
+import { uploadMultipleImage } from '../../Config/multer.config';
+import validateImageFileRequest from '../../Middleware/validateImageFileRequest';
+import { ImageFilesArrayZodSchema } from '../../utils/imageValidationSchema';
+import bodyDataParser from '../../Middleware/bodyParser';
+
+const router = Router();
+
+router.post(
+  '/createProject',
+  uploadMultipleImage,
+  validateImageFileRequest(ImageFilesArrayZodSchema),
+  bodyDataParser,
+  validateRequest(ProjectsValidation.createProjectSchema),
+  ProjectController.createProject,
+);
+
+// Get all projects
+router.get('/', ProjectController.getAllProjects);
+
+// Get a single project by ID
+router.get('/:id', ProjectController.getProjectById);
+
+// Update a project by ID
+router.patch(
+  '/:id',
+  uploadMultipleImage,
+  validateImageFileRequest(ImageFilesArrayZodSchema),
+  bodyDataParser,
+  validateRequest(ProjectsValidation.updateProjectSchema),
+  ProjectController.updateProject,
+);
+
+export const ProjectRoutes = router;
