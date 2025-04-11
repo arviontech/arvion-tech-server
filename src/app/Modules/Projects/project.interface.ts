@@ -10,7 +10,7 @@ export interface TProject {
   };
   live: string;
   technologies: [Types.ObjectId];
-  images: string[];
+  projectImages: string[];
   createdAt?: Date;
   updatedAt?: Date;
 }

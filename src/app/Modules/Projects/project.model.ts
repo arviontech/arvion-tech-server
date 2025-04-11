@@ -28,7 +28,7 @@ const projectSchema = new Schema<TProject>(
       required: true,
       ref: 'Skill',
     },
-    images: {
+    projectImages: {
       type: [String],
       required: true,
     },

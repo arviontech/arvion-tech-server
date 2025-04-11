@@ -3,6 +3,6 @@ export interface TService {
   description: string;
   features: string[];
   images: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  // createdAt?: Date;
+  // updatedAt?: Date;
 }
