@@ -16,3 +16,14 @@ export const createTeamMemberZodSchema = z.object({
       .url('Invalid Facebook URL'),
   }),
 });
+
+export const updateTeamMemberZodSchema = z.object({
+  body: z.object({
+    name: z.string().optional(),
+    designation: z.string().optional(),
+    description: z.string().optional(),
+    github: z.string().url('Invalid GitHub URL').optional(),
+    linkedin: z.string().url('Invalid LinkedIn URL').optional(),
+    facebook: z.string().url('Invalid Facebook URL').optional(),
+  }),
+});

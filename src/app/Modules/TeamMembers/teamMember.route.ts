@@ -5,7 +5,10 @@ import { ImageFilesArrayZodSchema } from '../../utils/imageValidationSchema';
 import validateImageFileRequest from '../../Middleware/validateImageFileRequest';
 import bodyDataParser from '../../Middleware/bodyParser';
 import { validateRequest } from '../../Middleware/validateRequest';
-import { createTeamMemberZodSchema } from './teamMember.validation';
+import {
+  createTeamMemberZodSchema,
+  updateTeamMemberZodSchema,
+} from './teamMember.validation';
 
 const router = Router();
 
@@ -16,6 +19,18 @@ router.post(
   bodyDataParser,
   validateRequest(createTeamMemberZodSchema),
   TeamMemberController.createTeamMember,
+);
+
+router.get('/', TeamMemberController.getAllTeamMembers);
+router.get('/:id', TeamMemberController.getSingleTeamMember);
+
+router.patch(
+  '/:id',
+  uploadSingleImage,
+  validateImageFileRequest(ImageFilesArrayZodSchema),
+  bodyDataParser,
+  validateRequest(updateTeamMemberZodSchema),
+  TeamMemberController.updateTeamMemberInfo,
 );
 
 export const TeamMemberRoutes = router;
