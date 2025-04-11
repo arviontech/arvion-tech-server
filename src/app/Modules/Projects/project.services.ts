@@ -5,7 +5,7 @@ import { Project } from './project.model';
 import httpStatus from 'http-status';
 const createProject = async (payload: TProject, images: TImageFiles) => {
   const { ProjectImages } = images;
-  payload.images = ProjectImages.map((image) => image.path);
+  payload.projectImages = ProjectImages.map((image) => image.path);
   const newProject = await Project.create(payload);
   return newProject;
 };
@@ -36,12 +36,12 @@ const updateProjectById = async (
   }
   const postImages = images?.projectImages ?? [];
   if (postImages.length > 0) {
-    payload.images = [
-      ...(project.images ?? []),
+    payload.projectImages = [
+      ...(project.projectImages ?? []),
       ...postImages.map((image) => image.path),
     ];
   } else {
-    payload.images = project.images;
+    payload.projectImages = project.projectImages;
   }
 
   const updatedProject = await Project.findByIdAndUpdate(projectId, payload, {

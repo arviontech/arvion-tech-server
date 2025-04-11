@@ -12,7 +12,7 @@ const router = Router();
 
 router.post(
   '/createProject',
-  uploadMultipleImages([{ name: 'ProjectImages', maxCount: 5 }]),
+  uploadMultipleImages([{ name: 'projectImages', maxCount: 5 }]),
   validateImageFileRequest(ImageFilesArrayZodSchema),
   bodyDataParser,
   validateRequest(ProjectsValidation.createProjectSchema),
